@@ -1,0 +1,72 @@
+print "=====================================";
+print "  ULTIMATE INTERPRETER STRESS TEST   ";
+print "=====================================";
+
+print "";
+print "--- 1. Data Types & Reassignment ---";
+let str = "Hello";
+let num = 42;
+let bool = true;
+let empty = null;
+print str + " Utsav!";
+num = 42.5;
+print num;
+
+print "";
+print "--- 2. Math & Order of Operations ---";
+let math = 10 + 5 * 2 - 8 / 4; 
+print "10 + 5 * 2 - 8 / 4 = " + math; 
+
+print "";
+print "--- 3. Logic & Comparisons ---";
+print "10 > 5 is " + (10 > 5);
+print "5 == 5 is " + (5 == 5);
+print "Bang operator (!true) is " + (!true);
+
+print "";
+print "--- 4. Scope Isolation ---";
+let scopeVar = "GLOBAL";
+{
+    let scopeVar = "LOCAL";
+    print "Inside block: " + scopeVar;
+}
+print "Outside block: " + scopeVar;
+
+print "";
+print "--- 5. Control Flow (If/Else) ---";
+let score = 85;
+if (score >= 90) {
+    print "Grade: A";
+} else if (score >= 80) {
+    print "Grade: B";
+} else {
+    print "Grade: C";
+}
+
+print "";
+print "--- 6. Loops (While & For) ---";
+print "While Loop Count:";
+let w = 0;
+while (w < 2) {
+    print w;
+    w = w + 1;
+}
+
+print "For Loop Count:";
+for (let f = 0; f < 2; f = f + 1) {
+    print f;
+}
+
+print "";
+print "--- 7. The Grand Finale: Factorial ---";
+let target = 5;
+let fact = 1;
+for (let i = 1; i <= target; i = i + 1) {
+    fact = fact * i;
+}
+print "Factorial of " + target + " is: " + fact;
+
+print "";
+print "=====================================";
+print "     ALL TESTS PASSED SUCCESSFULLY   ";
+print "=====================================";

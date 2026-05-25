@@ -253,6 +253,12 @@ public class Parser {
     }
 
     private Expr primary() {
+        // ADDED FIX: Tell the parser how to handle true, false, and null
+        if (match(TokenType.FALSE)) return new LiteralExpr(false);
+        if (match(TokenType.TRUE)) return new LiteralExpr(true);
+        if (match(TokenType.NULL)) return new LiteralExpr(null);
+
+        // Ashith's original code below
         if (match(TokenType.NUMBER, TokenType.STRING)) {
             return new LiteralExpr(previous().literal);
         }
