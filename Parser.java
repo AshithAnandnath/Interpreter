@@ -8,7 +8,7 @@ import java.util.List;
  * - Token with fields: TokenType type, String lexeme, Object literal, int line
  * - TokenType enum values:
  *   LET, PRINT, IF, ELSE, WHILE, FOR,
- *   IDENTIFIER, NUMBER, STRING,
+ *   IDENTIFIER, NUMBER, STRING, TRUE, FALSE, NULL,
  *   LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,
  *   SEMICOLON, EQUAL, EQUAL_EQUAL, BANG, BANG_EQUAL,
  *   GREATER, GREATER_EQUAL, LESS, LESS_EQUAL,
@@ -253,6 +253,15 @@ public class Parser {
     }
 
     private Expr primary() {
+        if (match(TokenType.FALSE)) {
+            return new LiteralExpr(false);
+        }
+        if (match(TokenType.TRUE)) {
+            return new LiteralExpr(true);
+        }
+        if (match(TokenType.NULL)) {
+            return new LiteralExpr(null);
+        }
         if (match(TokenType.NUMBER, TokenType.STRING)) {
             return new LiteralExpr(previous().literal);
         }

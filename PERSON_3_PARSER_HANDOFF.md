@@ -60,6 +60,8 @@ The parser currently supports:
 - Grouped expressions
 - Number literals
 - String literals
+- Boolean literals
+- Null literal
 - Variable references
 
 Example supported program:
@@ -107,6 +109,9 @@ FOR,
 IDENTIFIER,
 NUMBER,
 STRING,
+TRUE,
+FALSE,
+NULL,
 
 LEFT_PAREN,
 RIGHT_PAREN,
