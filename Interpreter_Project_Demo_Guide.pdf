@@ -1,0 +1,341 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [7 0 R 9 0 R 11 0 R 13 0 R 15 0 R 17 0 R] /Count 6 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier >>
+endobj
+6 0 obj
+<< /Length 2889 >>
+stream
+BT /F2 20 Tf 54 742 Td (Custom Programming Language Interpreter in Java) Tj ET
+BT /F1 13 Tf 54 710 Td (Demo Guide and Project Explanation) Tj ET
+BT /F2 13 Tf 54 676 Td (1. Project Overview) Tj ET
+BT /F1 10 Tf 54 658 Td (This project is a custom programming language interpreter built completely from scratch ) Tj ET
+BT /F1 10 Tf 54 645 Td (in Java. The purpose is to understand how programming languages work internally, from ) Tj ET
+BT /F1 10 Tf 54 632 Td (reading source code to executing output.) Tj ET
+BT /F1 10 Tf 54 611 Td (The project does not use parser generators such as ANTLR or JavaCC. Every major stage is) Tj ET
+BT /F1 10 Tf 54 598 Td ( manually implemented using Java Standard Edition.) Tj ET
+BT /F2 13 Tf 54 569 Td (2. Main Pipeline) Tj ET
+BT /F1 10 Tf 54 551 Td (The interpreter follows this complete flow:) Tj ET
+BT /F3 8.5 Tf 64 525 Td (Source Code) Tj ET
+BT /F3 8.5 Tf 64 514 Td (-> Lexer) Tj ET
+BT /F3 8.5 Tf 64 503 Td (-> Tokens) Tj ET
+BT /F3 8.5 Tf 64 492 Td (-> Parser) Tj ET
+BT /F3 8.5 Tf 64 481 Td (-> AST) Tj ET
+BT /F3 8.5 Tf 64 470 Td (-> Interpreter) Tj ET
+BT /F3 8.5 Tf 64 459 Td (-> Output) Tj ET
+BT /F1 10 Tf 54 443 Td (This is called a tree-walking interpreter because the interpreter walks through the ) Tj ET
+BT /F1 10 Tf 54 430 Td (Abstract Syntax Tree and executes each node.) Tj ET
+BT /F2 13 Tf 54 401 Td (3. Supported Language Features) Tj ET
+BT /F1 10 Tf 64 383 Td (- Variable declarations using let) Tj ET
+BT /F1 10 Tf 64 370 Td (- Variable assignment) Tj ET
+BT /F1 10 Tf 64 357 Td (- Print statements) Tj ET
+BT /F1 10 Tf 64 344 Td (- If / else conditions) Tj ET
+BT /F1 10 Tf 64 331 Td (- While loops) Tj ET
+BT /F1 10 Tf 64 318 Td (- For loops) Tj ET
+BT /F1 10 Tf 64 305 Td (- Block statements with braces) Tj ET
+BT /F1 10 Tf 64 292 Td (- Nested variable scopes) Tj ET
+BT /F1 10 Tf 64 279 Td (- Numbers, strings, booleans, and null) Tj ET
+BT /F1 10 Tf 64 266 Td (- Arithmetic operations: +, -, *, /) Tj ET
+BT /F1 10 Tf 64 253 Td (- Comparison operations: >, >=, <, <=) Tj ET
+BT /F1 10 Tf 64 240 Td (- Equality operations: ==, !=) Tj ET
+BT /F1 10 Tf 64 227 Td (- Unary operations: ! and -) Tj ET
+BT /F1 10 Tf 64 214 Td (- Line-number based lexer, parser, and runtime errors) Tj ET
+BT /F1 10 Tf 64 201 Td (- Interactive terminal REPL and script-file execution) Tj ET
+BT /F2 13 Tf 54 172 Td (4. Team Work Division) Tj ET
+BT /F1 10 Tf 64 154 Td (- Person 1: Architecture, AST classes, and Environment) Tj ET
+BT /F1 10 Tf 64 141 Td (- Person 2: Lexer and token generation) Tj ET
+BT /F1 10 Tf 64 128 Td (- Person 3: Parser and syntax analysis) Tj ET
+BT /F1 10 Tf 64 115 Td (- Person 4: Interpreter and execution) Tj ET
+BT /F1 10 Tf 54 94 Td (Each part connects to the next part through strict method signatures so the team can ) Tj ET
+BT /F1 10 Tf 54 81 Td (work independently and still integrate cleanly.) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 1 of 6) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 2646 >>
+stream
+BT /F2 13 Tf 54 734 Td (5. Main.java) Tj ET
+BT /F1 10 Tf 54 716 Td (Main.java is the entry point of the project. It decides whether to run a file or start ) Tj ET
+BT /F1 10 Tf 54 703 Td (the interactive prompt.) Tj ET
+BT /F3 8.5 Tf 64 677 Td (javac *.java) Tj ET
+BT /F3 8.5 Tf 64 666 Td (java Main) Tj ET
+BT /F3 8.5 Tf 64 655 Td (java Main test.script) Tj ET
+BT /F1 10 Tf 54 639 Td (The core pipeline in Main.java connects all team parts:) Tj ET
+BT /F3 8.5 Tf 64 613 Td (Lexer lexer = new Lexer\(source\);) Tj ET
+BT /F3 8.5 Tf 64 602 Td (List<Token> tokens = lexer.scanTokens\(\);) Tj ET
+BT /F3 8.5 Tf 64 591 Td () Tj ET
+BT /F3 8.5 Tf 64 580 Td (Parser parser = new Parser\(tokens\);) Tj ET
+BT /F3 8.5 Tf 64 569 Td (List<Stmt> statements = parser.parse\(\);) Tj ET
+BT /F3 8.5 Tf 64 558 Td () Tj ET
+BT /F3 8.5 Tf 64 547 Td (interpreter.interpret\(statements\);) Tj ET
+BT /F2 13 Tf 54 523 Td (6. Lexer) Tj ET
+BT /F1 10 Tf 54 505 Td (The lexer converts raw source code into tokens. Tokens are small structured pieces of ) Tj ET
+BT /F1 10 Tf 54 492 Td (the program, such as keywords, identifiers, numbers, strings, operators, and ) Tj ET
+BT /F1 10 Tf 54 479 Td (punctuation.) Tj ET
+BT /F1 10 Tf 54 458 Td (Example source code:) Tj ET
+BT /F3 8.5 Tf 64 432 Td (let x = 10;) Tj ET
+BT /F1 10 Tf 54 416 Td (Example token sequence:) Tj ET
+BT /F3 8.5 Tf 64 390 Td (LET IDENTIFIER EQUAL NUMBER SEMICOLON EOF) Tj ET
+BT /F1 10 Tf 54 374 Td (The lexer also tracks line numbers so errors can point to the exact line where a problem) Tj ET
+BT /F1 10 Tf 54 361 Td ( occurred.) Tj ET
+BT /F2 13 Tf 54 332 Td (7. Token and TokenType) Tj ET
+BT /F1 10 Tf 54 314 Td (TokenType.java defines every possible token category, such as LET, PRINT, IDENTIFIER, ) Tj ET
+BT /F1 10 Tf 54 301 Td (NUMBER, STRING, PLUS, MINUS, and EOF.) Tj ET
+BT /F1 10 Tf 54 280 Td (Token.java stores the actual token data:) Tj ET
+BT /F3 8.5 Tf 64 254 Td (TokenType type;) Tj ET
+BT /F3 8.5 Tf 64 243 Td (String lexeme;) Tj ET
+BT /F3 8.5 Tf 64 232 Td (Object literal;) Tj ET
+BT /F3 8.5 Tf 64 221 Td (int line;) Tj ET
+BT /F1 10 Tf 54 205 Td (For example, the number 10 can become a token like:) Tj ET
+BT /F3 8.5 Tf 64 179 Td (Token[NUMBER "10" 10.0 at line 1]) Tj ET
+BT /F2 13 Tf 54 155 Td (8. Parser) Tj ET
+BT /F1 10 Tf 54 137 Td (The parser receives the token list and checks whether the tokens follow the grammar of ) Tj ET
+BT /F1 10 Tf 54 124 Td (the language. It then builds an AST, which stands for Abstract Syntax Tree.) Tj ET
+BT /F1 10 Tf 54 103 Td (The required parser API is:) Tj ET
+BT /F3 8.5 Tf 64 77 Td (public Parser\(List<Token> tokens\)) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 2 of 6) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 8 0 R >>
+endobj
+10 0 obj
+<< /Length 2380 >>
+stream
+BT /F3 8.5 Tf 64 742 Td (public List<Stmt> parse\(\)) Tj ET
+BT /F1 10 Tf 54 726 Td (Example valid code:) Tj ET
+BT /F3 8.5 Tf 64 700 Td (let x = 10;) Tj ET
+BT /F1 10 Tf 54 684 Td (Example invalid code:) Tj ET
+BT /F3 8.5 Tf 64 658 Td (let = 10;) Tj ET
+BT /F1 10 Tf 54 642 Td (The invalid code produces a parser error similar to:) Tj ET
+BT /F3 8.5 Tf 64 616 Td ([Line 1] Error at '=': Expected variable name.) Tj ET
+BT /F2 13 Tf 54 592 Td (9. Operator Precedence) Tj ET
+BT /F1 10 Tf 54 574 Td (The parser understands operator precedence. This means multiplication and division ) Tj ET
+BT /F1 10 Tf 54 561 Td (happen before addition and subtraction.) Tj ET
+BT /F3 8.5 Tf 64 535 Td (let x = 2 + 3 * 4;) Tj ET
+BT /F3 8.5 Tf 64 524 Td (print x;) Tj ET
+BT /F1 10 Tf 54 508 Td (The parser reads this as:) Tj ET
+BT /F3 8.5 Tf 64 482 Td (2 + \(3 * 4\)) Tj ET
+BT /F1 10 Tf 54 466 Td (So the output is:) Tj ET
+BT /F3 8.5 Tf 64 440 Td (14) Tj ET
+BT /F2 13 Tf 54 416 Td (10. For Loop Handling) Tj ET
+BT /F1 10 Tf 54 398 Td (For loops are supported safely by converting them into existing block and while-loop AST) Tj ET
+BT /F1 10 Tf 54 385 Td ( nodes. This avoids needing a separate ForStmt class.) Tj ET
+BT /F1 10 Tf 54 364 Td (Source code:) Tj ET
+BT /F3 8.5 Tf 64 338 Td (for \(let i = 0; i < 3; i = i + 1\) {) Tj ET
+BT /F3 8.5 Tf 64 327 Td (    print i;) Tj ET
+BT /F3 8.5 Tf 64 316 Td (}) Tj ET
+BT /F1 10 Tf 54 300 Td (Internal equivalent:) Tj ET
+BT /F3 8.5 Tf 64 274 Td ({) Tj ET
+BT /F3 8.5 Tf 64 263 Td (    let i = 0;) Tj ET
+BT /F3 8.5 Tf 64 252 Td (    while \(i < 3\) {) Tj ET
+BT /F3 8.5 Tf 64 241 Td (        print i;) Tj ET
+BT /F3 8.5 Tf 64 230 Td (        i = i + 1;) Tj ET
+BT /F3 8.5 Tf 64 219 Td (    }) Tj ET
+BT /F3 8.5 Tf 64 208 Td (}) Tj ET
+BT /F2 13 Tf 54 184 Td (11. AST) Tj ET
+BT /F1 10 Tf 54 166 Td (AST means Abstract Syntax Tree. It represents the structure of the program using Java ) Tj ET
+BT /F1 10 Tf 54 153 Td (objects instead of raw text.) Tj ET
+BT /F1 10 Tf 54 132 Td (Expressions are represented by Expr nodes such as BinaryExpr, LiteralExpr, VariableExpr,) Tj ET
+BT /F1 10 Tf 54 119 Td ( AssignExpr, UnaryExpr, and GroupingExpr.) Tj ET
+BT /F1 10 Tf 54 98 Td (Statements are represented by Stmt nodes such as PrintStmt, VarDeclareStmt, IfStmt, ) Tj ET
+BT /F1 10 Tf 54 85 Td (WhileStmt, BlockStmt, and ExpressionStmt.) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 3 of 6) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 10 0 R >>
+endobj
+12 0 obj
+<< /Length 2367 >>
+stream
+BT /F1 10 Tf 54 742 Td (Example code:) Tj ET
+BT /F3 8.5 Tf 64 716 Td (print 2 + 3;) Tj ET
+BT /F1 10 Tf 54 700 Td (Conceptual AST:) Tj ET
+BT /F3 8.5 Tf 64 674 Td (PrintStmt) Tj ET
+BT /F3 8.5 Tf 64 663 Td (  BinaryExpr) Tj ET
+BT /F3 8.5 Tf 64 652 Td (    left: 2) Tj ET
+BT /F3 8.5 Tf 64 641 Td (    operator: +) Tj ET
+BT /F3 8.5 Tf 64 630 Td (    right: 3) Tj ET
+BT /F2 13 Tf 54 606 Td (12. Visitor Pattern) Tj ET
+BT /F1 10 Tf 54 588 Td (The project uses the Visitor Design Pattern. Each AST node has an accept method, and the) Tj ET
+BT /F1 10 Tf 54 575 Td ( interpreter implements visitor methods for each node type.) Tj ET
+BT /F3 8.5 Tf 64 549 Td (visitBinaryExpr\(\)) Tj ET
+BT /F3 8.5 Tf 64 538 Td (visitPrintStmt\(\)) Tj ET
+BT /F3 8.5 Tf 64 527 Td (visitWhileStmt\(\)) Tj ET
+BT /F1 10 Tf 54 511 Td (This keeps AST structure and execution logic cleanly separated.) Tj ET
+BT /F2 13 Tf 54 482 Td (13. Environment and Memory) Tj ET
+BT /F1 10 Tf 54 464 Td (Environment.java manages variables and scoped memory. It stores variable names and ) Tj ET
+BT /F1 10 Tf 54 451 Td (values in a map.) Tj ET
+BT /F3 8.5 Tf 64 425 Td (Map<String, Object> values) Tj ET
+BT /F1 10 Tf 54 409 Td (It also supports nested scopes using an enclosing Environment reference.) Tj ET
+BT /F1 10 Tf 54 388 Td (Example:) Tj ET
+BT /F3 8.5 Tf 64 362 Td (let value = 100;) Tj ET
+BT /F3 8.5 Tf 64 351 Td ({) Tj ET
+BT /F3 8.5 Tf 64 340 Td (    let value = 200;) Tj ET
+BT /F3 8.5 Tf 64 329 Td (    print value;) Tj ET
+BT /F3 8.5 Tf 64 318 Td (}) Tj ET
+BT /F3 8.5 Tf 64 307 Td (print value;) Tj ET
+BT /F1 10 Tf 54 291 Td (Output:) Tj ET
+BT /F3 8.5 Tf 64 265 Td (200) Tj ET
+BT /F3 8.5 Tf 64 254 Td (100) Tj ET
+BT /F1 10 Tf 54 238 Td (This shows scope isolation: the inner value does not destroy the outer value.) Tj ET
+BT /F2 13 Tf 54 209 Td (14. Interpreter) Tj ET
+BT /F1 10 Tf 54 191 Td (The interpreter receives List<Stmt> from the parser and executes each statement. It ) Tj ET
+BT /F1 10 Tf 54 178 Td (evaluates expressions, creates variables, updates variables, executes loops, checks ) Tj ET
+BT /F1 10 Tf 54 165 Td (conditions, and prints output.) Tj ET
+BT /F1 10 Tf 54 144 Td (Example:) Tj ET
+BT /F3 8.5 Tf 64 118 Td (print 10 + 20;) Tj ET
+BT /F1 10 Tf 54 102 Td (The interpreter evaluates the BinaryExpr and prints:) Tj ET
+BT /F3 8.5 Tf 64 76 Td (30) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 4 of 6) Tj ET
+endstream
+endobj
+13 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 12 0 R >>
+endobj
+14 0 obj
+<< /Length 2534 >>
+stream
+BT /F2 13 Tf 54 734 Td (15. Complete Execution Example) Tj ET
+BT /F1 10 Tf 54 716 Td (Input program:) Tj ET
+BT /F3 8.5 Tf 64 690 Td (let x = 2 + 3 * 4;) Tj ET
+BT /F3 8.5 Tf 64 679 Td (print x;) Tj ET
+BT /F1 10 Tf 54 663 Td (Step 1: Source code is read.) Tj ET
+BT /F1 10 Tf 54 642 Td (Step 2: The lexer creates tokens.) Tj ET
+BT /F3 8.5 Tf 64 616 Td (LET IDENTIFIER EQUAL NUMBER PLUS NUMBER STAR NUMBER SEMICOLON PRINT ) Tj ET
+BT /F3 8.5 Tf 64 605 Td (IDENTIFIER SEMICOLON EOF) Tj ET
+BT /F1 10 Tf 54 589 Td (Step 3: The parser creates an AST.) Tj ET
+BT /F3 8.5 Tf 64 563 Td (VarDeclareStmt) Tj ET
+BT /F3 8.5 Tf 64 552 Td (  name: x) Tj ET
+BT /F3 8.5 Tf 64 541 Td (  initializer: 2 + \(3 * 4\)) Tj ET
+BT /F3 8.5 Tf 64 530 Td () Tj ET
+BT /F3 8.5 Tf 64 519 Td (PrintStmt) Tj ET
+BT /F3 8.5 Tf 64 508 Td (  expression: VariableExpr x) Tj ET
+BT /F1 10 Tf 54 492 Td (Step 4: The interpreter executes the AST.) Tj ET
+BT /F3 8.5 Tf 64 466 Td (3 * 4 = 12) Tj ET
+BT /F3 8.5 Tf 64 455 Td (2 + 12 = 14) Tj ET
+BT /F3 8.5 Tf 64 444 Td (x = 14) Tj ET
+BT /F3 8.5 Tf 64 433 Td (print x) Tj ET
+BT /F1 10 Tf 54 417 Td (Final output:) Tj ET
+BT /F3 8.5 Tf 64 391 Td (14) Tj ET
+BT /F2 13 Tf 54 367 Td (16. Demo Commands) Tj ET
+BT /F1 10 Tf 54 349 Td (Open PowerShell in the project folder and run:) Tj ET
+BT /F3 8.5 Tf 64 323 Td (cd "C:\\Users\\ankit\\OneDrive\\Documents\\Ashith ) Tj ET
+BT /F3 8.5 Tf 64 312 Td (Anandnath\\python\\Interpreter\\Interpreter") Tj ET
+BT /F3 8.5 Tf 64 301 Td (javac *.java) Tj ET
+BT /F3 8.5 Tf 64 290 Td (java Main) Tj ET
+BT /F2 13 Tf 54 266 Td (17. Demo Code To Paste) Tj ET
+BT /F1 10 Tf 54 248 Td (Paste these lines into the terminal after java Main starts:) Tj ET
+BT /F3 8.5 Tf 64 222 Td (print "===== DEMO START =====";) Tj ET
+BT /F3 8.5 Tf 64 211 Td (let x = 2 + 3 * 4;) Tj ET
+BT /F3 8.5 Tf 64 200 Td (print x;) Tj ET
+BT /F3 8.5 Tf 64 189 Td (if \(x > 10\) { print "x is greater than 10"; } else { print "x is small"; }) Tj ET
+BT /F3 8.5 Tf 64 178 Td (let total = 0;) Tj ET
+BT /F3 8.5 Tf 64 167 Td (for \(let i = 1; i <= 5; i = i + 1\) { total = total + i; }) Tj ET
+BT /F3 8.5 Tf 64 156 Td (print total;) Tj ET
+BT /F3 8.5 Tf 64 145 Td (let value = 100;) Tj ET
+BT /F3 8.5 Tf 64 134 Td ({ let value = 200; print value; }) Tj ET
+BT /F3 8.5 Tf 64 123 Td (print value;) Tj ET
+BT /F3 8.5 Tf 64 112 Td (print true;) Tj ET
+BT /F3 8.5 Tf 64 101 Td (print null;) Tj ET
+BT /F3 8.5 Tf 64 90 Td (print "===== DEMO COMPLETE =====";) Tj ET
+BT /F1 10 Tf 54 74 Td (Expected important output:) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 5 of 6) Tj ET
+endstream
+endobj
+15 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 14 0 R >>
+endobj
+16 0 obj
+<< /Length 3012 >>
+stream
+BT /F3 8.5 Tf 64 729 Td (===== DEMO START =====) Tj ET
+BT /F3 8.5 Tf 64 718 Td (14) Tj ET
+BT /F3 8.5 Tf 64 707 Td (x is greater than 10) Tj ET
+BT /F3 8.5 Tf 64 696 Td (15) Tj ET
+BT /F3 8.5 Tf 64 685 Td (200) Tj ET
+BT /F3 8.5 Tf 64 674 Td (100) Tj ET
+BT /F3 8.5 Tf 64 663 Td (true) Tj ET
+BT /F3 8.5 Tf 64 652 Td (nil) Tj ET
+BT /F3 8.5 Tf 64 641 Td (===== DEMO COMPLETE =====) Tj ET
+BT /F2 13 Tf 54 617 Td (18. What To Say During Demo) Tj ET
+BT /F1 10 Tf 54 599 Td (Our project is a custom interpreted language built from scratch in Java. The user writes) Tj ET
+BT /F1 10 Tf 54 586 Td ( code in our language. First, the lexer breaks the code into tokens. Then the parser ) Tj ET
+BT /F1 10 Tf 54 573 Td (checks the grammar and builds an AST. The AST represents the program structure. Finally,) Tj ET
+BT /F1 10 Tf 54 560 Td ( the interpreter walks the AST using the Visitor pattern and executes each statement. ) Tj ET
+BT /F1 10 Tf 54 547 Td (Variables are stored in an Environment class, which supports nested scopes. This lets us) Tj ET
+BT /F1 10 Tf 54 534 Td ( handle local and global variables properly.) Tj ET
+BT /F1 10 Tf 54 513 Td (The project does not rely on parser generators or external libraries. Everything is ) Tj ET
+BT /F1 10 Tf 54 500 Td (implemented manually using Java Standard Edition.) Tj ET
+BT /F2 13 Tf 54 471 Td (19. Strengths) Tj ET
+BT /F1 10 Tf 64 453 Td (- Built fully in Java) Tj ET
+BT /F1 10 Tf 64 440 Td (- No external parser generator) Tj ET
+BT /F1 10 Tf 64 427 Td (- Manual lexer) Tj ET
+BT /F1 10 Tf 64 414 Td (- Manual recursive-descent parser) Tj ET
+BT /F1 10 Tf 64 401 Td (- AST-based execution) Tj ET
+BT /F1 10 Tf 64 388 Td (- Visitor design pattern) Tj ET
+BT /F1 10 Tf 64 375 Td (- Nested environment for memory scope) Tj ET
+BT /F1 10 Tf 64 362 Td (- Custom error handling) Tj ET
+BT /F1 10 Tf 64 349 Td (- Line-number based errors) Tj ET
+BT /F1 10 Tf 64 336 Td (- Interactive REPL support) Tj ET
+BT /F1 10 Tf 64 323 Td (- Script file support) Tj ET
+BT /F1 10 Tf 64 310 Td (- For loops implemented through while-loop conversion) Tj ET
+BT /F2 13 Tf 54 281 Td (20. Limitations) Tj ET
+BT /F1 10 Tf 64 263 Td (- No functions yet) Tj ET
+BT /F1 10 Tf 64 250 Td (- No arrays yet) Tj ET
+BT /F1 10 Tf 64 237 Td (- No classes yet) Tj ET
+BT /F1 10 Tf 64 224 Td (- No input function yet) Tj ET
+BT /F1 10 Tf 64 211 Td (- No break or continue yet) Tj ET
+BT /F1 10 Tf 64 198 Td (- No advanced standard library yet) Tj ET
+BT /F1 10 Tf 54 177 Td (These features can be added later because the project architecture is modular. We can ) Tj ET
+BT /F1 10 Tf 54 164 Td (extend the lexer, parser, AST, and interpreter step by step.) Tj ET
+BT /F2 13 Tf 54 135 Td (21. Closing Line) Tj ET
+BT /F1 10 Tf 54 117 Td (This project helped us understand how programming languages work internally, from source) Tj ET
+BT /F1 10 Tf 54 104 Td ( code input to tokenization, parsing, AST construction, memory handling, and final ) Tj ET
+BT /F1 10 Tf 54 91 Td (execution.) Tj ET
+BT /F1 8 Tf 500 32 Td (Page 6 of 6) Tj ET
+endstream
+endobj
+17 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 16 0 R >>
+endobj
+xref
+0 18
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000149 00000 n 
+0000000219 00000 n 
+0000000294 00000 n 
+0000000362 00000 n 
+0000003303 00000 n 
+0000003449 00000 n 
+0000006147 00000 n 
+0000006293 00000 n 
+0000008726 00000 n 
+0000008874 00000 n 
+0000011294 00000 n 
+0000011442 00000 n 
+0000014029 00000 n 
+0000014177 00000 n 
+0000017242 00000 n 
+trailer
+<< /Size 18 /Root 1 0 R >>
+startxref
+17390
+%%EOF
