@@ -13,7 +13,7 @@ public enum TokenType {
     IDENTIFIER, STRING, NUMBER,
 
     // Keywords.
-    LET, PRINT, IF, ELSE, WHILE, TRUE, FALSE, NULL,
+    LET, PRINT, IF, ELSE, WHILE, FOR, TRUE, FALSE, NULL,
 
     // Special.
     EOF

@@ -81,4 +81,8 @@ public class Main {
         
         System.out.println("\n=================================================");
     }
+
+    public static void runtimeError(RuntimeError error) {
+        System.err.println("[Runtime Error] " + error.getMessage());
+    }
 }
